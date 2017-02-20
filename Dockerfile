@@ -1,13 +1,14 @@
-FROM docker:1.12.1
+FROM docker:1.13.1
 
 MAINTAINER Viktor Farcic <viktor@farcic.com>
+MAINTAINER Martin Ahrer <martin.ahrer@software-craftsmen.at>
 
 ENV SWARM_CLIENT_VERSION 2.2
-ENV DOCKER_COMPOSE_VERSION 1.8.0
+ENV DOCKER_COMPOSE_VERSION 1.11.1
 ENV COMMAND_OPTIONS ""
 
 RUN adduser -G root -D jenkins
-RUN apk --update add openjdk8-jre python py-pip git
+RUN apk --update add openjdk8-jre python py-pip git bash
 
 RUN wget -q https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}-jar-with-dependencies.jar -P /home/jenkins/
 RUN pip install docker-compose
